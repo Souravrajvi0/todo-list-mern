@@ -11,3 +11,7 @@ coverage/
 client/dist/
 server/.env
 .memory-db/
+
+*.zip
+.deploy*/
+
