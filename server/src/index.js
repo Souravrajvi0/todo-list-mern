@@ -11,43 +11,25 @@ const maybeSeed = async () => {
   const count = await Task.countDocuments();
   if (count > 0) return;
   const { getWeekStart } = require('./utils/week');
+  const prefillData = require('./constants/prefillData.json');
   const weekStart = getWeekStart(new Date());
-  const day = (offset, hour = 10) => {
+  const samples = (prefillData.sampleTasks || []).map((item) => {
+    const hour = Number((item.startTime || '10:00').split(':')[0]) || 10;
     const d = new Date(weekStart);
-    d.setDate(d.getDate() + offset);
+    d.setDate(d.getDate() + (item.dayOffset ?? 0));
     d.setHours(hour, 0, 0, 0);
-    return d;
-  };
-  await Task.insertMany([
-    {
-      title: 'Finishing Wireframe',
-      description: 'Complete the mobile wireframes for review',
-      date: day(2, 9),
-      startTime: '09:00',
-      endTime: '11:00',
-      priority: 'High',
-      status: 'In Progress',
-    },
-    {
-      title: 'Meeting with team',
-      description: 'Sprint planning sync',
-      date: day(2, 14),
-      startTime: '14:00',
-      endTime: '15:00',
-      priority: 'Medium',
-      status: 'In Progress',
-    },
-    {
-      title: 'Buy a cat food',
-      description: 'Grocery run',
-      date: day(2, 18),
-      startTime: '18:00',
-      endTime: '18:30',
-      priority: 'Low',
-      status: 'Completed',
-    },
-  ]);
-  console.log('Seeded sample tasks');
+    return {
+      title: item.title,
+      description: item.description || '',
+      date: d,
+      startTime: item.startTime || '',
+      endTime: item.endTime || '',
+      priority: item.priority || 'Medium',
+      status: item.status || 'In Progress',
+    };
+  });
+  await Task.insertMany(samples);
+  console.log(`Seeded ${samples.length} sample tasks from prefillData.json`);
 };
 
 const start = async () => {

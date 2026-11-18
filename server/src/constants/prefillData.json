@@ -1,0 +1,65 @@
+{
+  "newTaskDefaults": {
+    "title": "Doing Homework",
+    "description": "",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "priority": "Medium"
+  },
+  "sampleTasks": [
+    {
+      "title": "Finishing Wireframe",
+      "description": "Complete the mobile wireframes for review",
+      "dayOffset": 2,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "priority": "High",
+      "status": "In Progress"
+    },
+    {
+      "title": "Meeting with team",
+      "description": "Sprint planning sync",
+      "dayOffset": 2,
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "priority": "Medium",
+      "status": "In Progress"
+    },
+    {
+      "title": "Buy a cat food",
+      "description": "Grocery run",
+      "dayOffset": 2,
+      "startTime": "18:00",
+      "endTime": "18:30",
+      "priority": "Low",
+      "status": "Completed"
+    },
+    {
+      "title": "Doing Homework",
+      "description": "Math assignment chapter 4",
+      "dayOffset": 4,
+      "startTime": "16:00",
+      "endTime": "18:00",
+      "priority": "High",
+      "status": "In Progress"
+    },
+    {
+      "title": "Finish report draft",
+      "description": "Weekly status report",
+      "dayOffset": 1,
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "priority": "Medium",
+      "status": "Completed"
+    },
+    {
+      "title": "Gym session",
+      "description": "",
+      "dayOffset": 3,
+      "startTime": "07:00",
+      "endTime": "08:00",
+      "priority": "Low",
+      "status": "In Progress"
+    }
+  ]
+}

@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Calendar, Clock, X } from 'lucide-react';
 import { formatLongDate, parseTaskDate, toDateInput } from '../utils/date';
+import prefillData from '../constants/prefillData.json';
 
-const emptyForm = (date) => ({
-  title: '',
-  description: '',
-  date: toDateInput(date || new Date()),
-  startTime: '',
-  endTime: '',
-  priority: 'Medium',
-});
+// Prefill new-task form fields from constants/prefillData.json
+const emptyForm = (date) => {
+  const defaults = prefillData.newTaskDefaults || {};
+  return {
+    title: defaults.title || '',
+    description: defaults.description || '',
+    date: toDateInput(date || new Date()),
+    startTime: defaults.startTime || '',
+    endTime: defaults.endTime || '',
+    priority: defaults.priority || 'Medium',
+  };
+};
 
 export default function TaskSheet({ open, mode = 'create', task, defaultDate, onClose, onSubmit }) {
   const [form, setForm] = useState(emptyForm(defaultDate));
