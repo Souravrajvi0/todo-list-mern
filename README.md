@@ -86,16 +86,20 @@ npm run seed
 
 ## Deploy
 
-### Frontend (Netlify)
+### All-in-one (Netlify)
 
-1. Connect this repo to Netlify (build uses `netlify.toml`).
-2. Set env var **`VITE_API_URL`** to your public API base, e.g. `https://your-api.onrender.com/api`.
+`netlify.toml` builds the React app and exposes the REST API via **Netlify Functions** (`/api/*`), so one deploy gives you UI + API.
 
-### Backend (Render example)
+- Live site connects to same-origin `/api`
+- Function store is ephemeral (fine for demos); use the Express + MongoDB Atlas API below for durable data
 
-1. New Web Service from the `server/` folder.
-2. Build: `npm install` · Start: `npm start`
-3. Set `MONGODB_URI` (MongoDB Atlas), `CLIENT_URL` (your Netlify URL), `SEED_ON_START=true` (optional).
+### Backend with MongoDB (Render + Atlas)
+
+1. Create a free [MongoDB Atlas](https://www.mongodb.com/atlas) cluster and copy the connection string.
+2. New Web Service from `server/` (or use `render.yaml`).
+3. Build: `npm install` · Start: `npm start`
+4. Env: `MONGODB_URI`, `CLIENT_URL` (Netlify URL), `SEED_ON_START=true`
+5. On Netlify, set `VITE_API_URL=https://your-api.onrender.com/api` and redeploy the client.
 
 ## Figma
 

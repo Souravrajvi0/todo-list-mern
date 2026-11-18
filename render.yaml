@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: todo-list-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: SEED_ON_START
+        value: "true"
+      - key: NODE_VERSION
+        value: "20"
